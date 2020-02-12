@@ -9,7 +9,7 @@ National Low Income Housing Coaltion:
 Exchange Website - 
 
 
-# # Questions? 
+## Questions? 
 - What was the overal impact from ACA
 - Have we seen a turn with what is going on with the current admin
 - Who was at an advantage
