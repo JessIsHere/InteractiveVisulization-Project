@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, jsonify
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
@@ -15,20 +15,15 @@ aca_state_data = mongo.db.ACAStateData
 #Route to render the index.html page with data from the ACAData_DB database
 @app.route("/")
 def index():
-    aca_data = aca_state_data.find()
-    return render_template("index.html", aca_data=aca_data)
+    return render_template("index.html")
 
-#DEPENDING ON OUR ROUTE DECISIONS, WE CAN USE AN UPDATE DASHBOARD FUNCTION IN FLASK OR JAVASCRIPT UPDATING FUNCTION
-#Route to replot ACAStateData data in the dashboard using a Python script, then redirect to index.html data page.
-# @app.route("/update_dashboard")
-# def update_dashboard():
+#Setup api for acquiring data from MongoDB
+@app.route("/API/Data/")
+def data():
+    aca_data = aca_state_data.find({}, {"_id": 0})
+    return jsonify(list(aca_data))
 
-    #Use update_dashboard.py function to take new data and replot the dashboard.
-    #The ACAStateData is already inserted into MongoDB, so no external insert_many required.
-    #update_dashboard.update()
 
-    #Redirect function to send us back to main html page.
-    #return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
