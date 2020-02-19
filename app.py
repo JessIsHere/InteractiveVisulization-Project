@@ -17,7 +17,10 @@ aca_state_data = mongo.db.ACAStateData
 def index():
     return render_template("index.html")
 
-#Setup api for acquiring data from MongoDB
+#Setup api for acquiring data from MongoDB. 
+#The find({}, {"_id":0}) basically amends find() to select everything (first {} set), 
+#then omits the "_id" ({"_id": 0}). This is CRITICAL because the ObjectId from MongoDB
+#is NOT JSONIFIABLE!!!
 @app.route("/API/Data/")
 def data():
     aca_data = aca_state_data.find({}, {"_id": 0})
