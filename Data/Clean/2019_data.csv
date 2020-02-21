@@ -1,4 +1,4 @@
-State_Abbr,State,Medicaid_Expanded,Total_Financial_Assistance_Apps_Submitted,Medicaid_Indiv_Elig_Applied,CHIP_Indiv_Elig_Applied,Total Medicaid and CHIP Determinations,Total_Enrollment,Latitude,Longitude,Total Medicaid Enrollment ,Tot_CHIP_Enroll,Month,Year
+State_Abbr,State,Medicaid_Expanded,Total_Financial_Assistance_Apps_Submitted,Medicaid_Indiv_Elig_Applied,CHIP_Indiv_Elig_Applied,Total Medicaid and CHIP Determinations,Total_Enrollment,Latitude,Longitude,Tot_Medicaid_Enroll,Tot_CHIP_Enroll,Month,Year
 OK,Oklahoma,N,53653.0,48783.0,9442.0,58225.0,730160,42.1497,-74.9384,608692,121468,Jan,2019
 NJ,New Jersey,Y,54916.0,18347.0,7583.0,25930.0,1730812,41.1289,-98.2883,1518570,212242,Jan,2019
 IN,Indiana,Y,98151.0,41697.0,3343.0,45040.0,1454519,40.3363,-89.0022,1340724,113795,Jan,2019
