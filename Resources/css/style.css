@@ -1,0 +1,12 @@
+html,
+/* This is to format container to full page */
+body {
+  height: 100%;
+  margin: 0
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
