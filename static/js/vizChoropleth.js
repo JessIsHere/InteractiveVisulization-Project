@@ -35,7 +35,7 @@ d3.json(url, function (grabData) {
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
 
-        // Number of breaks in step range: Ammount of color saturation in gradient to move from one scale to another.
+        // Number of breaks in step range: Ammount of color saturation in gradient to move from  one scale to another.
         steps: 5,
 
         // How am I defining my steps? Quartile - Health rating 
