@@ -63,6 +63,7 @@ d3.json(url, function (grabData) {
           var colors = acaData.options.colors;
           var labels = [];
 
+<<<<<<< HEAD
           // Add min & max
           var legendInfo =
           '<h1>Health Rating</h1>' +
@@ -89,6 +90,43 @@ d3.json(url, function (grabData) {
     legend.addTo(myMap);
 
 });
+=======
+<<<<<<< HEAD
+    // var statedata1 = data.filter(value => value["State Name"] === "Alabama");
+    // var statedata2 = data.filter(value => value["State Name"] === "California");
+
+    console.log(data);
+    // console.log(statedata1);
+    // console.log(statedata2);
+});
+
+
+// //Clear previous data in demographicMenu: Select in Line 1, Reassign to nothing in Line 2
+// var oldDemographicMenu = d3.select("#sample-metadata");
+// oldDemographicMenu.html("");
+    
+    
+// //Select sample-metadata id using d3. This is where I will insert text for demographicData
+// var demographicMenu = d3.select("#sample-metadata");
+
+//     var cell = demographicMenu.append("p");
+//     cell.text(`Age: ${age}`);
+            
+//     var cell = demographicMenu.append("p");
+//     cell.text(`Ethnicity: ${ethnicity}`);
+
+//     var cell = demographicMenu.append("p");
+//     cell.text(`Gender: ${gender}`);
+            
+//     var cell = demographicMenu.append("p");
+//     cell.text(`Location: ${location}`);
+
+//     var cell = demographicMenu.append("p");
+//     cell.text(`Wash Frequency: ${wfreq}`);
+=======
+    })
+})
+>>>>>>> 577fe158985159011f2f9b3232223ff35a17fc3f
 
 
 
@@ -96,7 +134,15 @@ d3.json(url, function (grabData) {
 //     var statedata1 = data.filter(value => value["State Name"] === "Alabama");
 //     var statedata2 = data.filter(value => value["State Name"] === "California");
 
+<<<<<<< HEAD
 //     console.log(data);
 // // <<<<<<< HEAD
 //     console.log(statedata1);
 //     console.log(statedata2);
+=======
+    console.log(data);
+// <<<<<<< HEAD
+    console.log(statedata1);
+    console.log(statedata2);
+>>>>>>> 52f0fc6d5657cadf823c51dd6ead6f6bc163805b
+>>>>>>> 577fe158985159011f2f9b3232223ff35a17fc3f
