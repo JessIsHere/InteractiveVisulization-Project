@@ -4,7 +4,6 @@
 var url = "/API/Data"
 
 var ACAData = d3.json(url).then(function(data){
-<<<<<<< HEAD
     // console.log(data);
 });
 
@@ -32,7 +31,7 @@ d3.json(url, function (grabData) {
     // Create choropleth layer
     acaJson = L.choropleth(data, {
         //  Define property to call
-        valueProperty: 'State',
+        valueProperty: 'Total_Enrollment',
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
 
@@ -45,46 +44,35 @@ d3.json(url, function (grabData) {
             color: '#fff',
             weight: 1,
             fillOpacity: 0.8
-
-        }
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(
+              'State: ' +
+              index.State +
+              '<br>Total Enrollment:<br>' + +
+              index.Total_Enrollment
+            );
+          }
+        }).addTo(myMap);
+      
+        // Set up the legend
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function () {
+          var div = L.DomUtil.create('div', 'info legend');
+          var limits = geojson.options.limits;
+          var colors = geojson.options.colors;
+          var labels = [];
 
     })
 })
-=======
 
+
+
+// steve doing things
     var statedata1 = data.filter(value => value["State Name"] === "Alabama");
     var statedata2 = data.filter(value => value["State Name"] === "California");
 
     console.log(data);
-<<<<<<< HEAD
+// <<<<<<< HEAD
     console.log(statedata1);
     console.log(statedata2);
-});
-
-
-// //Clear previous data in demographicMenu: Select in Line 1, Reassign to nothing in Line 2
-// var oldDemographicMenu = d3.select("#sample-metadata");
-// oldDemographicMenu.html("");
-    
-    
-// //Select sample-metadata id using d3. This is where I will insert text for demographicData
-// var demographicMenu = d3.select("#sample-metadata");
-
-//     var cell = demographicMenu.append("p");
-//     cell.text(`Age: ${age}`);
-            
-//     var cell = demographicMenu.append("p");
-//     cell.text(`Ethnicity: ${ethnicity}`);
-
-//     var cell = demographicMenu.append("p");
-//     cell.text(`Gender: ${gender}`);
-            
-//     var cell = demographicMenu.append("p");
-//     cell.text(`Location: ${location}`);
-
-//     var cell = demographicMenu.append("p");
-//     cell.text(`Wash Frequency: ${wfreq}`);
-=======
-});
->>>>>>> 1b0f393a6f3fc4714348a7897643d78d867741bc
->>>>>>> 6af93e319edc70b7ff0bdc7c95ae85b4873f3941
