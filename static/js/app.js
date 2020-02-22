@@ -9,6 +9,7 @@ var ACAData = d3.json(url).then(function(data){
     var statedata2 = data.filter(value => value["State Name"] === "California");
 
     console.log(data);
+<<<<<<< HEAD
     console.log(statedata1);
     console.log(statedata2);
 });
@@ -36,3 +37,6 @@ var ACAData = d3.json(url).then(function(data){
 
 //     var cell = demographicMenu.append("p");
 //     cell.text(`Wash Frequency: ${wfreq}`);
+=======
+});
+>>>>>>> 1b0f393a6f3fc4714348a7897643d78d867741bc

@@ -15,7 +15,7 @@ aca_state_data = mongo.db.ACAStateData
 #Route to render the index.html page with data from the ACAData_DB database
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index2.html")
 
 #Setup api for acquiring data from MongoDB. 
 #The find({}, {"_id":0}) basically amends find() to select everything (first {} set), 
