@@ -4,7 +4,7 @@
 var url = "/API/Data"
 
 var ACAData = d3.json(url).then(function(data){
-    // console.log(data);
+    console.log(data);
 });
 
 // Creating map object
@@ -24,9 +24,9 @@ L.tileLayer(
   }
 ).addTo(myMap);
 
-var acaJson;
+// var acaJson;
 
-// Load in Data
+// // Load in Data
 d3.json(url, function (grabData) {
     // Create choropleth layer
     acaJson = L.choropleth(grabData, {
@@ -35,10 +35,10 @@ d3.json(url, function (grabData) {
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
 
-        // Number of breaks in step range: Ammount of color saturation in gradient to move from  one scale to another.
-        steps: 5,
+//         // Number of breaks in step range: Ammount of color saturation in gradient to move from  one scale to another.
+//         steps: 5,
 
-        // How am I defining my steps? Quartile - Health rating 
+//         // How am I defining my steps? Quartile - Health rating 
         mode: 'q',
         style: {
             color: '#fff',
@@ -55,15 +55,15 @@ d3.json(url, function (grabData) {
           }
         }).addTo(myMap);
       
-        // Set up the legend
+//         // Set up the legend
         var legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
           var div = L.DomUtil.create('div', 'info legend');
-          var limits = acaData.options.limits;
-          var colors = acaData.options.colors;
+          var limits = acaJson.options.limits;
+          var colors = acaJson.options.colors;
           var labels = [];
 
-          // Add min & max
+//           // Add min & max
           var legendInfo =
           '<h1>Health Rating</h1>' +
           '<div class="labels">' +
