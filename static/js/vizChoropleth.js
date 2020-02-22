@@ -3,7 +3,7 @@
 //Retrieve data from url /API/Data
 var url = "/API/Data"
 
-var ACAData = d3.json(url).then(function(data){
+d3.json(url).then(function(data){
     console.log(data);
 });
 
@@ -24,19 +24,19 @@ L.tileLayer(
   }
 ).addTo(myMap);
 
-// var acaJson;
+var acaJson;
 
 // // Load in Data
-d3.json(url, function (grabData) {
+d3.json(url, function (data) {
     // Create choropleth layer
-    acaJson = L.choropleth(grabData, {
+    acaJson = L.choropleth(data, {
         //  Define property to call
         valueProperty: 'Total_Enrollment',
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
 
 //         // Number of breaks in step range: Ammount of color saturation in gradient to move from  one scale to another.
-//         steps: 5,
+        steps: 5,
 
 //         // How am I defining my steps? Quartile - Health rating 
         mode: 'q',
