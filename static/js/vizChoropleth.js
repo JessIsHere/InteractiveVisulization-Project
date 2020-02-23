@@ -14,81 +14,61 @@ var myMap = L.map('map', {
     zoom: 8 
 })
 
-// Tile Layer
-L.tileLayer(
-    'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
-  {
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: API_KEY
-  }
-).addTo(myMap);
+var svg = d3.select("svg"),
+  width = +svg.attr("width"),
+  height = +svg.attr("height");
 
-var acaJson;
+// Map and projection
+var path = d3.geoPath();
+var projection = d3.geoMercator()
+  .scale(70)
+  .center([0,20])
+  .translate([width / 2, height / 2]);
 
-// // Load in Data
-d3.json(url, function (data) {
-    // Create choropleth layer
-    acaJson = L.choropleth(data, {
-        //  Define property to call
-        valueProperty: 'Total_Enrollment',
-        // Set color scale
-        scale: ['#ffffb2', '#b10026'],
+// Data and color scale
+var data = d3.map();
+var colorScale = d3.scaleThreshold()
+  .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
+  .range(d3.schemeBlues[7]);
 
-//         // Number of breaks in step range: Ammount of color saturation in gradient to move from  one scale to another.
-        steps: 5,
+// Load external data and boot
+d3.queue()
+  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
+  .await(ready);
 
-//         // How am I defining my steps? Quartile - Health rating 
-        mode: 'q',
-        style: {
-            color: '#fff',
-            weight: 1,
-            fillOpacity: 0.8
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(
-              'State: ' +
-              feature.index.State +
-              '<br>Total Enrollment:<br>' + +
-              feature.index.Total_Enrollment
-            );
-          }
-        }).addTo(myMap);
-      
-//         // Set up the legend
-        var legend = L.control({ position: 'bottomright' });
-        legend.onAdd = function () {
-          var div = L.DomUtil.create('div', 'info legend');
-          var limits = acaJson.options.limits;
-          var colors = acaJson.options.colors;
-          var labels = [];
+function ready(error, topo) {
 
-//           // Add min & max
-          var legendInfo =
-          '<h1>Health Rating</h1>' +
-          '<div class="labels">' +
-          '<div class="min">' +
-          limits[0] +
-          '</div>' +
-          '<div class="max">' +
-          limits[limits.length - 1] +
-          '</div>' +
-          '</div>';
+  // Draw the map
+  svg.append("g")
+    .selectAll("path")
+    .data(topo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(projection)
+      )
+      // set the color of each country
+      .attr("fill", function (d) {
+        d.total = data.get(d.id) || 0;
+        return colorScale(d.total);
+      });
+    }
+//   div.innerHTML = legendInfo;
 
-        div.innerHTML = legendInfo;
-
-        limits.forEach(function (limit, index) {
-          labels.push('<li style="background-color: ' + colors[index] + '"></li>');
-        });
+      //   limits.forEach(function (limit, index) {
+      //     labels.push('<li style="background-color: ' + colors[index] + '"></li>');
+      //   });
     
-        div.innerHTML += '<ul>' + labels.join('') + '</ul>';
-        return div;
-      };
+      //   div.innerHTML += '<ul>' + labels.join('') + '</ul>';
+      //   return div;
+      // };
     
     // Adding legend to the map
-    legend.addTo(myMap);
+    // legend.addTo(myMap);
 
-});
+
 
 
 

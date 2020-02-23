@@ -6,15 +6,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
-    <script src='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.css' rel='stylesheet' /> 
+    <script src='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     
     
@@ -88,9 +84,12 @@
 
 
             <div class="row">
-              <div class="col-xl-12">Cloropleth
-                <div id='map'></div>  
+              <div class="col-xl-12">
+                <div id='map'></div>
+                <h2>Section 2</h2>
+                  <h5>Demographics Charts</h5>  
               </div>
+            </div>
                 
                 <!-- <div class="col-md-4">Legend/Text -->
                   <!-- <div class="dropdown"> -->
@@ -112,34 +111,36 @@
                 <!-- </div> -->
               <!-- </div> -->
             <!-- </div> -->
-        </div>
+        
       
 
 
-          <!-- <div class="row">
-              <div class="col-lg-12">
-                <div class="p-3 mb-2 bg-info text-white">
-                <h2>Section 2</h2>
-                <h5>Demographics Charts</h5>
-                  <p>Here we can put our charts related to poverty, outcomes etc</p>
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="p-3 mb-2 bg-info text-white">
+                  <h2>Section 2</h2>
+                  <h5>Demographics Charts</h5>
+                    <p>Here we can put our charts related to poverty, outcomes etc</p>
+                </div>
               </div>
             </div>
-          </div>
 
       
-          <div class="row">
-            <div class="col-lg-12 text-align-center">
-              <h2>Section 3</h2>
-              <p>Statistical Analysis</p>
-              <p>Scatter Plots</p>
-              <p>Linear Regression</p>
-              <p>Table</p>
+            <div class="row">
+              <div class="col-lg-12 text-align-center">
+                <h2>Section 3</h2>
+                <p>Statistical Analysis</p>
+                <p>Scatter Plots</p>
+                <p>Linear Regression</p>
+                <p>Table</p>
+              </div>
             </div>
-          </div> -->
       </div>
     
         
         </body>
         <script type="text/javascript" src="static/js/config.js"></script>
         <script type="text/javascript" src="static/js/vizChoropleth.js"></script>
+
+
 </html>
