@@ -1,62 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% block body %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project2</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-</head>
 
-<body>
-
+{{ macros.navbar() }}
+  <!-- JumboTron -->
   <div class="container">
+  <div class="jumbotron shadow-lg p-3 mb-5 bg-light">
+    <h1 class="display-3">Jess Is Here</h1>
+    <p class="lead text-uppercase">I am working on creating a test flask application for this project.
+                    Kevin's Flask tutorial is actually great.</p>
+    <hr class="my-2">
+    <p>It uses utility classes for typography and
+       spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#!" role="button">Some action</a>
+    </p>
+  </div>
+  <!-- Start of website -->
+  
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Test HTML Page for Evaluating MongoDB Data</h1>
-        <h2>Data Tests</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 text-center">
-        <div class="well">
-          <h4>DropDown Menu</h4>
-          <select id="selDataset"></select>
+      <div class="col-sm-2" id="myScrollspy">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action active" href="#section1">Overview</a>
+            <a class="list-group-item list-group-item-action" href="#section2">State Overview</a>
+            <a class="list-group-item list-group-item-action" href="#section3">Comparison</a>
+            <a class="list-group-item list-group-item-action" href="#section4">Give Me The Data</a>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <h2>Section 2</h2>
+          <h5>Demographics Charts</h5> 
+          <div id="map"></div>
         </div>
       </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
+          <hr>
+          <div id="section2">
+                    <h2>State Overview</h2>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    
+                </div>
+          <hr>
+          <div id="section3">
+                    <h2>Comparison</h2>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>fkasjdflkjsdlf;kasdfgsdfgsdfgsdjsd;lfkjas;ldfja;lsdjfl;aksdjfl;asdjfl;asjdfl;kajsdlkajsdflkasjdfljasdcnaskldncas;kldncv;lasndf;lkasndflkjasdl;kfjalskdjflaksdjflasdjflcksmc  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                </div>
+          <hr>
+          <div id="section4">
+                    <h2>Data Table</h2>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                    <p>This is a test section for things that we need to test for the website  </p>
+                  </div>
       </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <table>
-        <!-- Table Goes Here-->
-      </table>
-
-    </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="/Resources/js/app.js"></script>
-
-</body>
-
-</html>
+  <hr>
+  {{ macros.footer() }}
+</div>
+{% endblock %}
