@@ -1,82 +1,94 @@
 //Start building app.js file for extracting ACA data
 
 //Retrieve data from url /API/Data
-var url = "/API/Data"
 
-d3.json(url).then(function(data){
-    console.log(data);
+/// Creating map object
+var myMap = L.map('mapid', {
+  center: [34.0522, -118.2437],
+  zoom: 8
 });
 
-// Creating map object
+// Adding tile layer
+L.tileLayer(
+  'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+  {
+    attribution:
+      'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: API_KEY
+  }
+).addTo(myMap);
 
-var myMap = L.map('map', {
-    center: [39.8283, - 98.5795],
-    zoom: 8 
-})
+// // Load in geojson data
+// var geoData = '/API/Data';
 
-var svg = d3.select("svg"),
-  width = +svg.attr("width"),
-  height = +svg.attr("height");
+// var geojson;
 
-// Map and projection
-var path = d3.geoPath();
-var projection = d3.geoMercator()
-  .scale(70)
-  .center([0,20])
-  .translate([width / 2, height / 2]);
+// // Grab data with d3
+// d3.json(geoData, function (data) {
+//   // Create a new choropleth layer
+//   geojson = L.choropleth(data, {
+//     // Define what  property in the features to use
+//     valueProperty: 'MHI2016',
 
-// Data and color scale
-var data = d3.map();
-var colorScale = d3.scaleThreshold()
-  .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-  .range(d3.schemeBlues[7]);
+//     // Set color scale
+//     scale: ['#ffffb2', '#b10026'],
 
-// Load external data and boot
-d3.queue()
-  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
-  .await(ready);
+//     // Number of breaks in step range
+//     steps: 10,
 
-function ready(error, topo) {
+//     // q for quartile, e for equidistant, k for k-means
+//     mode: 'e',
+//     style: {
+//       // Border color
+//       color: '#fff',
+//       weight: 1,
+//       fillOpacity: 0.8
+//     }
+//   //   // Binding a pop-up to each layer
+//   //   onEachFeature: function (feature, layer) {
+//   //     layer.bindPopup(
+//   //       'Zip Code: ' +
+//   //       feature.properties.ZIP +
+//   //       '<br>Median Household Income:<br>' +
+//   //       '$' +
+//   //       feature.properties.MHI2016
+//   //     );
+//   //   }
+//   // }).addTo(myMap);
 
-  // Draw the map
-  svg.append("g")
-    .selectAll("path")
-    .data(topo.features)
-    .enter()
-    .append("path")
-      // draw each country
-      .attr("d", d3.geoPath()
-        .projection(projection)
-      )
-      // set the color of each country
-      .attr("fill", function (d) {
-        d.total = data.get(d.id) || 0;
-        return colorScale(d.total);
-      });
-    }
-//   div.innerHTML = legendInfo;
+//   // Set up the legend
+//   var legend = L.control({ position: 'bottomright' });
+//   legend.onAdd = function () {
+//     var div = L.DomUtil.create('div', 'info legend');
+//     var limits = geojson.options.limits;
+//     var colors = geojson.options.colors;
+//     var labels = [];
 
-      //   limits.forEach(function (limit, index) {
-      //     labels.push('<li style="background-color: ' + colors[index] + '"></li>');
-      //   });
-    
-      //   div.innerHTML += '<ul>' + labels.join('') + '</ul>';
-      //   return div;
-      // };
-    
-    // Adding legend to the map
-    // legend.addTo(myMap);
+//     // Add min & max
+//     var legendInfo =
+//       '<h1>Median Income</h1>' +
+//       '<div class="labels">' +
+//       '<div class="min">' +
+//       limits[0] +
+//       '</div>' +
+//       '<div class="max">' +
+//       limits[limits.length - 1] +
+//       '</div>' +
+//       '</div>';
 
+//     div.innerHTML = legendInfo;
 
+//     limits.forEach(function (limit, index) {
+//       labels.push('<li style="background-color: ' + colors[index] + '"></li>');
+//     });
 
+//     div.innerHTML += '<ul>' + labels.join('') + '</ul>';
+//     return div;
+//   };
 
+//   // Adding legend to the map
+//   legend.addTo(myMap);
+// });
 
-// steve doing things
-//     var statedata1 = data.filter(value => value["State Name"] === "Alabama");
-//     var statedata2 = data.filter(value => value["State Name"] === "California");
-
-//     console.log(data);
-// // <<<<<<< HEAD
-//     console.log(statedata1);
-//     console.log(statedata2);
