@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map('map', {
   center: [37.8, -96.0],
-  zoom: 8
+  zoom: 5
 });
 
 // Adding tile layer
@@ -27,30 +27,39 @@ d3.json(geoData, function(data){
 
   //Test that data extraction is working for statesData.geojson file.
   console.log(data)
+  console.log(data.features)
+  console.log(data.features[0].properties.density)
 
   // //As Justin's example, create new chloropleth layer
-  // geojson = L.choropleth(data, {
-  //   //define a property to in the features to use. The statesData has "density" for population density.
-  //   valueProperty: "density",
+  geojson = L.choropleth(data, {
 
-  //   //Set color scale
-  //   scale: ['#ffffb2', '#b10026'],
+    //define a property to in the features to use. The statesData has "density" for population density.
+    valueProperty: "density",
 
-  //   //Number of breaks in step range
-  //   steps: 10,
+    //Set color scale
+    scale: ['yellow', 'red'],
 
-  //   // q for quartile, e for equidistant, k for k-means
-  //   mode: 'e',
-  //   style: {
-  //     // Border color
-  //     color: '#fff',
-  //     weight: 1,
-  //     fillOpacity: 0.8
-  //   },
+    //Number of breaks in step range
+    steps: 10,
 
+    // q for quartile, e for equidistant, k for k-means
+    mode: 'e',
+    style: {
+      // Border color
+      color: "black",
+      weight: 1,
+      fillOpacity: 0.8
+    },
 
-
-
+    // Binding a pop-up to each layer
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup(
+        feature.properties.name +
+        "<br>Population Density:<br>" +
+        feature.properties.density
+      );
+    }
+  }).addTo(myMap);
 
 
 
