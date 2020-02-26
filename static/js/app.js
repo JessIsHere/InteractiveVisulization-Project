@@ -16,3 +16,11 @@ var myMap = L.map('mapid', {
         id: 'mapbox.streets',
         accessToken: API_KEY
     }).addTo(myMap);
+
+    var statedata1 = data.filter(value => value["State Name"] === "Alabama");
+    var statedata2 = data.filter(value => value["State Name"] === "California");
+
+    console.log(data);
+// <<<<<<< HEAD
+    console.log(statedata1);
+    console.log(statedata2);
