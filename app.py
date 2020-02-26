@@ -33,7 +33,7 @@ def map_data():
             
     # list comprehension
     # enrollment = [row["Data"]["Total_Enrollment"] if row["Data"]["Total_Enrollment"] >= -99999999999 else 0 for row in aca_data]
-    enrollment = [row["Data"]["All_Determinants"] for row in aca_data]
+    rank = [row["Data"]["All_Determinants_Rank"] for row in aca_data]
 
     # state_abbr = [row["Data"]['State_Abbr'] for row in aca_data]
     state_name = [row["Data"]['State'] for row in aca_data]
@@ -41,27 +41,12 @@ def map_data():
         "type": "choropleth",
         "locationmode": "USA-states",
         "locations": state_name,
-        'z': enrollment,
+        'z': rank,
         # Change state name later to show associated value
         "text": state_name,
         "hoverinfo": "text",
         'zmin': 0,
-        "zmax": max(enrollment),
-        "colorscale": [
-              [0, 'rgb(242,240,247)'], [0.2, 'rgb(218,218,235)'],
-              [0.4, 'rgb(188,189,220)'], [0.6, 'rgb(158,154,200)'],
-              [0.8, 'rgb(117,107,177)'], [1, 'rgb(84,39,143)']
-          ],
-          "colorbar": {
-              "title": 'Enrollment',
-              "thickness": 0.2
-          },
-        "marker": {
-            "line": {
-                "color": "rgb(8,8,8)",
-                "width": 2
-            },
-        }
+        "zmax": max(rank),
     }]
 
     # sliding scale over years change color

@@ -6,28 +6,30 @@
 {{ macros.navbar() }}
   <!-- JumboTron -->
   <div class="container">
-  <div class="jumbotron shadow-lg p-3 mb-5 bg-light">
-    <h1 class="display-3">ACA Dashboard</h1>
-    <p class="lead text-uppercase">I am working on creating a test flask application for this project.</p>
-    <hr class="my-2">
-    <p>It uses utility classes for typography and
-       spacing to space content out within the larger container.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#!" role="button">Some action</a>
-    </p>
-  </div>
-  <!-- Start of website -->
-  
-    <div class="row">
+    <div class="jumbotron shadow-lg p-3 mb-5 bg-light">
+      <div class="row">
       <div class="col-sm-2" id="myScrollspy">
         <div class="list-group">
             <a class="list-group-item list-group-item-action active" href="#section1">Overview</a>
             <a class="list-group-item list-group-item-action" href="#section2">State Overview</a>
             <a class="list-group-item list-group-item-action" href="#section3">Comparison</a>
-            <a class="list-group-item list-group-item-action" href="#section4">Give Me The Data</a>
+            <a class="list-group-item list-group-item-action" href="#section4">Data</a>
         </div>
       </div>
-        <div class="col-10">
+      <div class="col-sm-10">
+        <h1 class="display-3">ACA Dashboard</h1>
+        <p class="lead text-uppercase">I am working on creating a test flask application for this project.</p>
+        <hr class="my-2">
+        <p>It uses utility classes for typography and
+            spacing to space content out within the larger container.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Start of website -->
+  
+    <div class="row">
+      
+        <div class="col">
           <div id="section2">
           <h3>Choropleth</h3>
           <h5>Enrollment over time</h5> 
@@ -36,28 +38,91 @@
           <hr>
           <div id="section2">
                     <h2>State Overview</h2>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
+                    <div class="row">
+                      <div class="col">
+                          <div class="card">
+                              <div class="card-body">
+                                <canvas id="myChart" width="400" height="450"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                </div>
                     
                 </div>
           <hr>
           <div id="section3">
                     <h2>Comparison</h2>
-                    <!-- Pull down for States -->
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
+               
+                <div class="row text-left">
+
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h4>Choose Year, Then Pick State</h4><br>
+                      <h4>Comparison Year 1</h4>
+                      <select id="selDatayear1"></select>
+                      <h4>Comparison State 1</h4>
+                      <select id="selDataset1"></select><br>
+                      
+                    </div>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">State Health Data</h3>
+                      </div>
+                      <div id="sample-metadata1" class="panel-body"></div>
+                    </div>
+                  </div>
+            
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h4>Choose Year, Then Pick State</h4><br>
+                      <h4>Comparison Year 2</h4>
+                      <select id="selDatayear2"></select>
+                      <h4>Comparison State 2</h4>
+                      <select id="selDataset2"></select><br>
+                      
+                    </div>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">State Health Data </h3>
+                      </div>
+                      <div id="sample-metadata2" class="panel-body"></div>
+                    </div>
+                  </div>
+            
+                  <!-- End of DropDown Menu Code for Menu 1 and 2-->
+            
+                  <div class="col-md-5">
+                    <div id="bar"></div>
+                  </div>
+                  <div class="col-md-5">
+                    <div id="gauge"></div>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div id="bubble"></div>
+                  </div>
+                </div>
+            
+                <div class="row">
+                  <table>
+                    <!-- Table Goes Here-->
+                  </table>
+            
+                </div>
+              </div>
           <hr>
           <div id="section4">
                     <h2>Data Table</h2>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
-                    <p>This is a test section for things that we need to test for the website  </p>
+                    <div class="row">
+                      <div class="col-8">
+                          <div class="card">
+                              <div class="card-body">
+                                <canvas id="myChart" width="550" height="400"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                   </div>     
                   </div>
               </div>
           </div>
