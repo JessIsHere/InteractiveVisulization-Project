@@ -33,7 +33,7 @@ def map_data():
             
     # list comprehension
     # enrollment = [row["Data"]["Total_Enrollment"] if row["Data"]["Total_Enrollment"] >= -99999999999 else 0 for row in aca_data]
-    enrollment = [row["Data"]["Total_Enrollment"] for row in aca_data]
+    enrollment = [row["Data"]["All_Determinants"] for row in aca_data]
 
     # state_abbr = [row["Data"]['State_Abbr'] for row in aca_data]
     state_name = [row["Data"]['State'] for row in aca_data]
@@ -63,7 +63,15 @@ def map_data():
             },
         }
     }]
+
+    # sliding scale over years change color
+    # on click load state chart
     return jsonify(data_mapped)
+
+
+@app.route("/About")
+def about():
+    return render_template("about.html")
 
 
 
