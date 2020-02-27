@@ -1,9 +1,16 @@
-body, html {
-  height: 100%;
-}
+
 
   #map {
     height: 500px;
     width: 500;
     z-index: 1;
   }
+
+  .page-holder {
+    min-height: 100vh;
+  }
+  
+  .bg-cover {
+    background-size: cover !important;
+  }
+  

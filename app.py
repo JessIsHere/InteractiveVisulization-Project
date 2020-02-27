@@ -46,9 +46,9 @@ def MapData():
     return jsonify(output)
 
 
-@app.route("/About")
-def about():
-    return render_template("about.html")
+# @app.route("/About")
+# def about():
+#     return render_template("about.html")
 
 
 

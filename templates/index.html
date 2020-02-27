@@ -13,9 +13,9 @@
       <div class="col-sm-2" id="myScrollspy">
         <div class="list-group">
             <a class="list-group-item list-group-item-action active" href="#section1">Overview</a>
-            <a class="list-group-item list-group-item-action" href="#section2">State Overview</a>
-            <a class="list-group-item list-group-item-action" href="#section3">Comparison</a>
-            <a class="list-group-item list-group-item-action" href="#section4">Data</a>
+            <a class="list-group-item list-group-item-action" href="#section2">Comparison</a>
+            <a class="list-group-item list-group-item-action" href="#section3">Data</a>
+            <!-- <a class="list-group-item list-group-item-action" href="#section4">Data</a> -->
         </div>
       </div>
       <div class="col-sm-10">
@@ -24,6 +24,8 @@
       </div>
     </div>
   </div>
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
   <!-- Start of website -->
     <div class="row">
         <div class="col-10">
@@ -31,15 +33,12 @@
           <h3>Health Ranking</h3>
           <h5>Select Year</h5> 
           <div id="map"></div>
-          
         </div>
           <hr>
-          
-          <hr>
-          <div id="section3">
+          <div id="section2">
                     <h2>Comparison</h2>
  <!-- DropDown Menu Code for Menu 1 and Menu 2 in a single row!-->
-          <div class="row text-center">
+          <div class="row">
 
             <div class="col-md-6">
               <div class="well">
@@ -76,21 +75,20 @@
               </div>
             </div>
           
-
   <!-- End of DropDown Menu Code for Menu 1 and 2-->
-
+      <div class="row">
         <div class="col-md-5">
           <div id="bar"></div>
         </div>
         <div class="col-md-5">
           <div id="gauge"></div>
         </div>
-      <div class="row">
         <div class="col-md-12">
           <div id="bubble"></div>
         </div>
       </div>
-    </div>
+
+
 
       <div class="row">
         <table>
@@ -99,7 +97,7 @@
       </div>
     </div>
           <hr>
-          <div id="section4">
+          <div id="section3">
                     <h2>Data Table</h2>
                     <div class="row">
                       <div class="col-8">
@@ -111,9 +109,12 @@
                       </div>
                    </div>     
                 </div>
-            </div>
+              </div>
+            <div style="height: 700px"></div>
+          </div>
         </div>
-      </div>
+       </div>
+   
 
      <hr>
   {{ macros.footer() }}
