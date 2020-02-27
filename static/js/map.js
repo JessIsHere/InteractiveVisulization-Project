@@ -61,6 +61,8 @@ function buildMap(filterYear){
 });
 
 };
+
+
 buildMap(2019);
 // Creating map object
 
