@@ -10,12 +10,10 @@ function buildMap(filterYear) {
     console.log(data);
 
     var filteredData = data[0][filterYear];
-
     var ranks = filteredData.map(d => d['All_Determinants_Rank']);
-    console.log(ranks)
-
     var state_codes = filteredData.map(d => state_abbr[d['State']]);
     var states = filteredData.map(d => d['State']);
+    
 
     var data = [{
       type: 'choropleth',
@@ -57,26 +55,3 @@ function buildMap(filterYear) {
 
 buildMap(2019);
 
-
-d3.json(url).then(function (data) {
-  //Extract the states and use these to create a listing for the state dropdown menu.
-  var states = data.map(value => value.State);
-  //console.log(states);
-
-  // Use D3 to select the dropdown menu
-  var dropdownMenu = d3.select("#selDataset1");
-
-  //Initial menu option should be "State"
-  var cell = dropdownMenu.append("option");
-  cell.text("State");
-
-
-  //Loop through states for appending to dropdownMenu below "State"
-  states.forEach(function (newState) {
-
-    //For each new sampleNumber, append a new row and state text.
-    var cell = dropdownMenu.append("option");
-    cell.text(newState);
-
-  });
-});
