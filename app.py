@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, jsonify
 from flask_pymongo import PyMongo
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -11,6 +12,7 @@ mongo = PyMongo(app)
 #Connect to db = Mars_DataDB database and scraped_mars_data is the collection.
 aca_state_data = mongo.db.ACAStateData
 
+state_abbr = {'Alaska': 'AK', 'Alabama': 'AL', 'Arkansas': 'AR', 'American Samoa': 'AS', 'Arizona': 'AZ', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'District of Columbia': 'DC', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA', 'Guam': 'GU', 'Hawaii': 'HI', 'Iowa': 'IA', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Massachusetts': 'MA', 'Maryland': 'MD', 'Maine': 'ME', 'Michigan': 'MI', 'Minnesota': 'MN', 'Missouri': 'MO', 'Northern Mariana Islands': 'MP', 'Mississippi': 'MS', 'Montana': 'MT', 'National': 'NA', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Nebraska': 'NE', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'Nevada': 'NV', 'New York': 'NY', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Puerto Rico': 'PR', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Virginia': 'VA', 'Virgin Islands': 'VI', 'Vermont': 'VT', 'Washington': 'WA', 'Wisconsin': 'WI', 'West Virginia': 'WV', 'Wyoming': 'WY'}
 
 #Route to render the index.html page with data from the ACAData_DB database
 @app.route("/")
@@ -26,36 +28,48 @@ def data():
     aca_data = list(aca_state_data.find({}, {"_id": 0}))
     return jsonify(aca_data)
 
+@app.route("/API/Data/MapData")
+def MapData():
+    # query for content
+    content = list(aca_state_data.find({}, {"_id": 0}))
 
-# Comment out for later in case map.js revision doesn't work
-# //////////////////////////////////////////////////////////
+    # pull out the "Data" key into list for grouping and stuff
+    result_list = [result['Data'] for result in content]
+    result_df = pd.DataFrame(result_list)
+    grouped_df = pd.DataFrame(result_df.groupby("Year"))
 
-# @app.route("/API/Data/Map")
-# def map_data():
-#     aca_data = list(aca_state_data.find({}, {"_id": 0}))
+    output = []
+    d = {}
+    for index, row in grouped_df.iterrows():
+        d[row[0]] = row[1].to_dict(orient="records")
+    output.append(d)
+    return jsonify(output)
+
+@app.route("/API/Data/Map")
+def map_data():
+    aca_data = list(aca_state_data.find({}, {"_id": 0}))
             
     # list comprehension
     # enrollment = [row["Data"]["Total_Enrollment"] if row["Data"]["Total_Enrollment"] >= -99999999999 else 0 for row in aca_data]
-    # rank = [row["Data"]["All_Determinants_Rank"] for row in aca_data]
+    rank = [row["Data"]["All_Determinants_Rank"] for row in aca_data]
 
     # state_abbr = [row["Data"]['State_Abbr'] for row in aca_data]
-    # state_name = [row["Data"]['State'] for row in aca_data]
-    # data_mapped = [{
-    #     "type": "choropleth",
-    #     "locationmode": "USA-states",
-    #     "locations": state_name,
-    #     'z': rank,
+    state_name = [row["Data"]['State'] for row in aca_data]
+    data_mapped = [{
+        "type": "choropleth",
+        "locationmode": "USA-states",
+        "locations": state_name,
+        'z': rank,
         # Change state name later to show associated value
-        # "text": state_name,
-        # "hoverinfo": "text",
-        # 'zmin': 0,
-        # "zmax": max(rank),
-    # }]
+        "text": state_name,
+        "hoverinfo": "text",
+        'zmin': 0,
+        "zmax": max(rank),
+    }]
 
     # sliding scale over years change color
     # on click load state chart
-    # return jsonify(data_mapped)
-
+    return jsonify(data_mapped)
 
 
 @app.route("/About")
