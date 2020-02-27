@@ -94,7 +94,6 @@ function updateTable1() {
         //To filter the data to entries where the "State" is the desired state from pulldown menu.
         //Note that the == and not ===, the Year is a string search, but the array value is a number!
         var state = data.filter(value => value["State"] == pickedState && value["Year"] == pickedYear);
-        // console.log(data);
         // console.log(state);
 
         //To extract the state "Data" array from the state whose data we wanted from pulldown menu
@@ -220,7 +219,7 @@ d3.json(url).then(function(data) {
     var cell = dropdownMenuYear.append("option");
     cell.text("Year");
 
-    //If I just looped as above, there will be 52 lines for every year in the data.
+    //If I just looped as above, there will be 50 lines for every year in the data.
     //Create an array, then append to that array, then remove duplicates!
     yearArray = [];
 
