@@ -115,6 +115,7 @@ function updateTable1() {
         var premature = statedata["Premature_Death_Value"];
         var primaryphys = statedata["Primary_Care_Physicians_Value"];
         var uninsured = statedata["Uninsured_Value"];
+        var expanded = statedata["Medicaid_Expanded"];
 
         
         // console.log(data);
@@ -172,6 +173,9 @@ function updateTable1() {
 
             var cell = StateMenu.append("p");
             cell.text(`Uninsured: ${uninsured}`);
+
+            var cell = StateMenu.append("p");
+            cell.text(`Expanded Medicaid: ${expanded}`);
                 
 });
 
@@ -295,6 +299,7 @@ function updateTable2() {
         var premature = statedata["Premature_Death_Value"];
         var primaryphys = statedata["Primary_Care_Physicians_Value"];
         var uninsured = statedata["Uninsured_Value"];
+        var expanded = statedata["Medicaid_Expanded"];
 
         // console.log(data);
         // console.log(state);
@@ -354,6 +359,9 @@ function updateTable2() {
 
             var cell = StateMenu.append("p");
             cell.text(`Uninsured: ${uninsured}`);
+
+            var cell = StateMenu.append("p");
+            cell.text(`Expanded Medicaid: ${expanded}`);
                 
 });
 
