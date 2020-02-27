@@ -19,7 +19,7 @@
 var url = "/API/Data"
 
 var ACAData = d3.json(url).then(function(data){
-    // console.log(data);
+    console.log(data);
 });
 
 // Creating map object
@@ -42,12 +42,15 @@ L.tileLayer(
 var acaJson;
 
 // Load in Data
-d3.json(url, function (grabData) {
+d3.json(url).then(function(grabData) {
+
+    console.log(grabData)
     // Create choropleth layer
     acaJson = L.choropleth(grabData, {
         
         //  Define property to call
-        valueProperty: 'Total_Enrollment',
+        valueProperty: grabData.map(value => value.rank),
+        
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
 
@@ -61,6 +64,10 @@ d3.json(url, function (grabData) {
             weight: 1,
             fillOpacity: 0.8
         },
+
+
+        
+        // Pop for Additional Data
         onEachFeature: function (feature, layer) {
             layer.bindPopup(
               'State: ' +
@@ -71,6 +78,7 @@ d3.json(url, function (grabData) {
           }
         }).addTo(myMap);
 
+        console.log(data.rank);
         // Set up the legend
         var legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
@@ -104,4 +112,4 @@ d3.json(url, function (grabData) {
     // Adding legend to the map
     legend.addTo(myMap);
 
-});
+    });
