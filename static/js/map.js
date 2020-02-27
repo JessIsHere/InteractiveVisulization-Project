@@ -22,6 +22,7 @@ function buildMap(filterYear){
       locations: state_codes,
       z: ranks,
       text: states,
+      text: filterYear,
       colorscale: [
         [0, 'rgb(194,219,194)'], [0.2, 'rgb(123,188,176)'],
         [0.4, 'rgb(85,156,158)'], [0.6, 'rgb(58,124,137)'],
