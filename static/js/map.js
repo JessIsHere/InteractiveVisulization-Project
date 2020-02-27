@@ -43,13 +43,20 @@ var acaJson;
 
 // Load in Data
 d3.json(url).then(function(grabData) {
-
-    console.log(grabData)
+    var states = grabData.map(value => value.States);
+    var years = grabData.map(value => value.Year);
+    var thisYear = 2019;
+    var yearData;
+    
+    // var stateData = state[0]["Data"];
+    // console.log(stateData['All_Determinants_Rank']);
+    // console.log(stateData['All_Determinants_Rank'])
     // Create choropleth layer
     acaJson = L.choropleth(grabData, {
-        
-        //  Define property to call
-        valueProperty: grabData.map(value => value.rank),
+        yearData: grabData.filter(value => value['Year'] == '2019'),
+        stateData: yearData.map(value => value['State'][0]['Data']),
+       
+        valueProperty: yearData.map(value => value.All_Determinants_Rank),       
         
         // Set color scale
         scale: ['#ffffb2', '#b10026'],
@@ -77,7 +84,7 @@ d3.json(url).then(function(grabData) {
             );
           }
         }).addTo(myMap);
-
+        console.log(stateData),
         console.log(data.rank);
         // Set up the legend
         var legend = L.control({ position: 'bottomright' });
