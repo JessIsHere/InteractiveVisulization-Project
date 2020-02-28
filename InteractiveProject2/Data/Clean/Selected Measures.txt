@@ -1,0 +1,36 @@
+Behaviors:
+Drug Deaths
+Obesity
+
+
+Clinical Care:
+Primary Care Physicians
+Cholesterol Check
+Dedicated Health Care Provider
+
+
+Outcomes:
+Cancer Deaths
+Cardiovascular Deaths
+Infant Mortality
+Premature Death
+Injury Deaths
+Diabetes
+High Blood Pressure
+High Cholesterol
+Disparity in Health Status
+
+
+Community & Environment:
+Concentrated Disadvantage
+Unemployment Rate
+Underemployment Rate
+
+
+Policy:
+Immunizations - Children
+Uninsured
+
+
+
+
