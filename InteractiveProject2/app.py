@@ -47,9 +47,9 @@ def MapData():
 
 
 
-# @app.route("/About")
-# def about():
-#     return render_template("about.html")
+@app.route("/About")
+def about():
+    return render_template("about.html")
 
 
 
