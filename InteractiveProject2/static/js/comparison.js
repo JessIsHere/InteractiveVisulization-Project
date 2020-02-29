@@ -143,6 +143,9 @@ function updateTable1() {
             cell.text(`Year: ${year}`);
 
             var cell = StateMenu.append("p");
+            cell.text(`Expanded Medicaid: ${expanded}`);
+
+            var cell = StateMenu.append("p");
             cell.text(`Cancer Deaths: ${cancerdeaths}`);
 
             var cell = StateMenu.append("p");
@@ -177,9 +180,6 @@ function updateTable1() {
 
             var cell = StateMenu.append("p");
             cell.text(`Uninsured: ${uninsured}`);
-
-            var cell = StateMenu.append("p");
-            cell.text(`Expanded Medicaid: ${expanded}`);
                 
 });
 
@@ -334,6 +334,9 @@ function updateTable2() {
             cell.text(`Year: ${year}`);
 
             var cell = StateMenu.append("p");
+            cell.text(`Expanded Medicaid: ${expanded}`);
+
+            var cell = StateMenu.append("p");
             cell.text(`Cancer Deaths: ${cancerdeaths}`);
 
             var cell = StateMenu.append("p");
@@ -369,8 +372,6 @@ function updateTable2() {
             var cell = StateMenu.append("p");
             cell.text(`Uninsured: ${uninsured}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Expanded Medicaid: ${expanded}`);
                 
 });
 

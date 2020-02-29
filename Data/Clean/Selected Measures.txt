@@ -14,7 +14,6 @@ Cancer Deaths
 Cardiovascular Deaths
 Infant Mortality
 Premature Death
-Injury Deaths
 Diabetes
 High Blood Pressure
 High Cholesterol
@@ -22,7 +21,6 @@ Disparity in Health Status
 
 
 Community & Environment:
-Concentrated Disadvantage
 Unemployment Rate
 Underemployment Rate
 
