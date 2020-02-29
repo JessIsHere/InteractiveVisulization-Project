@@ -62,6 +62,7 @@ d3.json(url).then(function(data) {
 var parseTime = d3.timeParse("%Y");
 
 d3.select("#selectButton").on("change", updateChart);
+d3.select("#selStateData").on("change", updateChart);
 
 
 function updateChart() {
@@ -135,7 +136,7 @@ function updateChart() {
       
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
-      .domain([Math.min(years),Math.min(years)])
+      .domain([2014,2019])
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -143,7 +144,7 @@ function updateChart() {
 
     // Add Y axis based on variable selected
       var y = d3.scaleLinear()
-        .domain( [0, 12500000])
+        .domain( [10000,12500000])
         .range([ height, 0 ]);
       svg.append("g")
         .call(d3.axisLeft(y));
@@ -156,8 +157,8 @@ function updateChart() {
       .append("path")
         .datum(filteredData)
         .attr("d", d3.line()
-          .x(function(d) { return x(+d.years) })
-          .y(function(d) { return y(+d.Total_Enrollment) })
+          .x(function(d) { return x(+d['Year']) })
+          .y(function(d) { return y(+d['Total_Enrollment']) })
         )
         .attr("stroke", "black")
         .style("stroke-width", 4)
@@ -169,8 +170,8 @@ function updateChart() {
       .data(filteredData)
       .enter()
       .append('circle')
-        .attr("cx", function(d) { return x(+d.years) })
-        .attr("cy", function(d) { return x(+d.Total_Enrollment) })
+        .attr("cx", function(d) { return x(+d['Year']) })
+        .attr("cy", function(d) { return y(+d['Total_Enrollment']) })
         .attr("r", 7)
         .style("fill", "#69b3a2");
 
