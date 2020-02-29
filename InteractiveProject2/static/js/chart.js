@@ -3,7 +3,7 @@ var url = "/API/Data"
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 100},
-    width = 460 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -133,12 +133,53 @@ function updateChart() {
     //     .attr("transform", `translate(0, ${height})`)
     //     .call(bottomAxis);
 
-      
+    if (selectedOption == 'Total_Enrollment'){  
     // Add X axis --> it is a date format
-    var x = d3.scaleLinear()
-      .domain([2014,2019])
-      .range([ 0, width ]);
-    svg.append("g")
+      var x = d3.scaleLinear()
+        .domain([2014,2019])
+        .range([ 0, width ]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add Y axis based on variable selected
+      var y = d3.scaleLinear()
+        .domain( [10000,12500000])
+        .range([ height, 0 ]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+    
+
+
+    // Initialize line with group a
+      var line = svg
+        .append('g')
+        .append("path")
+          .datum(filteredData)
+          .attr("d", d3.line()
+            .x(function(d) { return x(+d['Year']) })
+            .y(function(d) { return y(+d['Total_Enrollment']) })
+          )
+          .attr("stroke", "black")
+          .style("stroke-width", 4)
+          .style("fill", "none");
+
+    // Initialize dots with group a
+      var dot = svg
+        .selectAll('circle')
+        .data(filteredData)
+        .enter()
+        .append('circle')
+          .attr("cx", function(d) { return x(+d['Year']) })
+          .attr("cy", function(d) { return y(+d['Total_Enrollment']) })
+          .attr("r", 7)
+          .style("fill", "#69b3a2");
+    }
+    else if (selectedOption == 'Uninsured_Value'){
+      var x = d3.scaleLinear()
+        .domain([2014,2019])
+        .range([ 0, width ]);
+      svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
@@ -152,32 +193,35 @@ function updateChart() {
 
 
     // Initialize line with group a
-    var line = svg
-      .append('g')
-      .append("path")
-        .datum(filteredData)
-        .attr("d", d3.line()
-          .x(function(d) { return x(+d['Year']) })
-          .y(function(d) { return y(+d['Total_Enrollment']) })
-        )
-        .attr("stroke", "black")
-        .style("stroke-width", 4)
-        .style("fill", "none");
+      var line = svg
+        .append('g')
+        .append("path")
+          .datum(filteredData)
+          .attr("d", d3.line()
+            .x(function(d) { return x(+d['Year']) })
+            .y(function(d) { return y(+d['Unisured_Value']) })
+          )
+          .attr("stroke", "black")
+          .style("stroke-width", 4)
+          .style("fill", "none");
 
     // Initialize dots with group a
-    var dot = svg
-      .selectAll('circle')
-      .data(filteredData)
-      .enter()
-      .append('circle')
-        .attr("cx", function(d) { return x(+d['Year']) })
-        .attr("cy", function(d) { return y(+d['Total_Enrollment']) })
-        .attr("r", 7)
-        .style("fill", "#69b3a2");
+      var dot = svg
+        .selectAll('circle')
+        .data(filteredData)
+        .enter()
+        .append('circle')
+          .attr("cx", function(d) { return x(+d['Year']) })
+          .attr("cy", function(d) { return y(+d['Uninsured_Value']) })
+          .attr("r", 7)
+          .style("fill", "#69b3a2");
+
+
+    }
 
 
     // // A function that update the chart
-    // function update(selectedGroup) {
+    // funSction update(selectedGroup) {
 
     //   // Create new data with the selection?
     //   var dataFilter = filteredData.map(function(d){return {time: d.Year, value:d[selectedGroup]} });
