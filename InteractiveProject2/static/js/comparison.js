@@ -327,50 +327,50 @@ function updateTable2() {
         //Select sample-metadata id using d3. This is where I will insert text for demographicData
         var StateMenu = d3.select("#sample-metadata2");
 
-            var cell = StateMenu.append("h4");
-            cell.text(`State: ${statename}`);
+        var cell = StateMenu.append("h4");
+        cell.text(`State: ${statename}`);
 
-            var cell = StateMenu.append("h4");
-            cell.text(`Year: ${year}`);
+        var cell = StateMenu.append("h4");
+        cell.text(`Year: ${year}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Expanded Medicaid: ${expanded}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Expanded Medicaid: ${expanded}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Cancer Deaths: ${cancerdeaths}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Uninsured: ${uninsured}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Cardiovascular Deaths: ${cardiodeaths}`);
-            
-            var cell = StateMenu.append("p");
-            cell.text(`Cholesterol Check: ${cholesterolcheck}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Disparity in Health Status: ${disparity}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Diabetes: ${diabetes}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Primary Care Physicians: ${primaryphys}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Disparity in Health Status: ${disparity}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Infant Mortality: ${infantmort}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Drug Deaths: ${drugdeaths}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Immunizations-Children: ${immunized}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`High Blood Pressure: ${bloodpressure}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Premature Deaths: ${premature}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Infant Mortality: ${infantmort}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Cancer Deaths: ${cancerdeaths}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Immunizations-Children: ${immunized}`);
- 
-            var cell = StateMenu.append("p");
-            cell.text(`Premature Deaths: ${premature}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Cardiovascular Deaths: ${cardiodeaths}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Primary Care Physicians: ${primaryphys}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Drug Deaths: ${drugdeaths}`);
+        
+        var cell = StateMenu.append("p");
+        cell.text(`Cholesterol Check: ${cholesterolcheck}`);
 
-            var cell = StateMenu.append("p");
-            cell.text(`Uninsured: ${uninsured}`);
+        var cell = StateMenu.append("p");
+        cell.text(`Diabetes: ${diabetes}`);
+      
+        var cell = StateMenu.append("p");
+        cell.text(`High Blood Pressure: ${bloodpressure}`);
 
                 
 });

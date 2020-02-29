@@ -26,31 +26,38 @@ function buildMap() {
     data.filter(value => value[`${filterYear}`] == filterYear)
     
 
-
+    // Declaring Variables for Choropleth
     var filteredData = data[0][filterYear];
     var ranks = filteredData.map(d => d['All_Determinants_Rank']);
     var state_codes = filteredData.map(d => state_abbr[d['State']]);
     var states = filteredData.map(d => d['State']);
     
-
+    // Creating Choropleth
     var data = [{
       type: 'choropleth',
       locationmode: 'USA-states',
       locations: state_codes,
       z: ranks,
       text: states,
-      text: filterYear,
-      hovertext: ['Test A'],
       colorscale: [
         [0, 'rgb(194,219,194)'], [0.2, 'rgb(123,188,176)'],
         [0.4, 'rgb(85,156,158)'], [0.6, 'rgb(58,124,137)'],
         [0.8, 'rgb(35,93,114)'], [1, 'rgb(18,63,90)']
       ],
-
+      colorbar: {
+        title: 'Health Ranking',
+        thickness: 12
+    },
+    marker: {
+        line:{
+            color: 'rgb(255,255,255)',
+            width: 1
+        }
+    }
     }];
 
     var layout = {
-      title: 'Health Ranking Changes by State',
+      title: 'State Health Ranking By Year',
       geo: {
         scope: 'usa',
         countrycolor: 'rgb(252,141,89)',
@@ -61,6 +68,7 @@ function buildMap() {
         subunitcolor: 'rgb(145,191,219)',
         lonaxis: {},
         lataxis: {},
+        marker: 'green'
 
       }
     }
