@@ -11,8 +11,8 @@ p {
 }
   
   #map {
-    height: 500px;
-    width: 500;
+    height: 500;
+    width: 700;
     z-index: 1;
   }
 
@@ -30,4 +30,7 @@ p {
     margin-right: auto;
     width: 50%;
   }
-  
+
+  .bar-chart {  
+    background-color:black;  
+}
