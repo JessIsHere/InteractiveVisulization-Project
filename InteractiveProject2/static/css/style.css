@@ -13,4 +13,11 @@
   .bg-cover {
     background-size: cover !important;
   }
+
+  .my-display {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
   
