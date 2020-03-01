@@ -22,6 +22,8 @@ d3.json(url).then(function(data) {
   // console.log(data);
 
   //Extract the states and use these to create a listing for the state dropdown menu.
+  stateArray = []
+
   var states = data.map(value => value.State);
   console.log(states);
 
@@ -30,19 +32,26 @@ d3.json(url).then(function(data) {
 
   //Initial menu option should be "California"
   var cell = dropdownMenu.append("option");
-  cell.text("California");
+  cell.text("Select State");
 
   //Loop through states for appending to dropdownMenu below "State"
   states.forEach(function(newState) {
+    //For each new sampleNumber, append a new row and state text.
+    stateArray.push(newState);
+  })
 
-      //For each new sampleNumber, append a new row and state text.
+  uniqueStates = new Set(stateArray);
+
+  uniqueStates.forEach(function(uniqueState) {
+
+      //For each unique state add new row and text.
       var cell = dropdownMenu.append("option");
-      cell.text(newState);
+      cell.text(uniqueState);
 
   });
   
   // List of groups (here I have one group per column)
-  var metrics = ["Total_Enrollment", "Uninsured_Value", "All Determinants_Value", "Cancer_Deaths_Value", "Cardiovascular_Deaths_Rank", "Cholesterol_Check_Value"];
+  var metrics = ["Total_Enrollment"];
   console.log(metrics);
 
   // add the options to the button
@@ -87,10 +96,10 @@ function updateChart() {
       console.log(filteredData);
       var years = filteredData.map(d => d['Year']);
       years.forEach(function(data) {
-        data.date = parseTime(data.date);
-        data.years = +data.years;
-      });
-    
+        data = parseTime(data);
+        // dataYears = +dataYears;
+        console.log(data);
+      
 
       console.log(years);
       var Total_Enrollment = filteredData.map(d => d['Total_Enrollment']);
@@ -98,40 +107,6 @@ function updateChart() {
       var Uninsured_Value = filteredData.map(d => d['Uninsured_Value']);
       console.log(Uninsured_Value);
 
-
-    //   var xTimeScale = d3.scaleTime()
-    //     .domain(d3.extent(filteredData, data => data.years))
-    //     .range([0, width]);
-
-    //   var yLinearScale = d3.scaleLinear()
-    //     .domain([0, d3.max(filteredData, data => data.Total_Enrollment)])
-    //     .range([height, 0]);
-
-    //   var bottomAxis = d3.axisBottom(xTimeScale);
-    //   var leftAxis = d3.axisLeft(yLinearScale);
-
-    //   var drawLine = d3.line()
-    //     .x(filteredData => xTimeScale(data.years))
-    //     .y(filteredData => yLinearScale(data.Total_Enrollment));
-
-    //   console.log(drawLine(filteredData));
-
-    //   chartGroup.append("path")
-    //   // The drawLine function returns the instructions for creating the line for forceData
-    //     .attr("d", drawLine(filteredData))
-    //     .classed("line", true);
-  
-    // // Append an SVG group element to the chartGroup, create the left axis inside of it
-    //   chartGroup.append("g")
-    //     .classed("axis", true)
-    //     .call(leftAxis);
-  
-    // // Append an SVG group element to the chartGroup, create the bottom axis inside of it
-    // // Translate the bottom axis to the bottom of the page
-    //   chartGroup.append("g")
-    //     .classed("axis", true)
-    //     .attr("transform", `translate(0, ${height})`)
-    //     .call(bottomAxis);
 
     if (selectedOption == 'Total_Enrollment'){  
     // Add X axis --> it is a date format
@@ -219,12 +194,14 @@ function updateChart() {
 
     }
 
+  });
+
 
     // // A function that update the chart
-    // funSction update(selectedGroup) {
+    // function update(selectedGroup) {
 
     //   // Create new data with the selection?
-    //   var dataFilter = filteredData.map(function(d){return {time: d.Year, value:d[selectedGroup]} });
+    //   var dataFilter = filteredData;
     //   // console.log(dataFilter);
 
     //   // Add X axis --> it is a date format
@@ -237,24 +214,24 @@ function updateChart() {
 
     //   // Add Y axis based on variable selected
     //   var y = d3.scaleLinear()
-    //     .domain( [Math.min(Total_Enrollment),Math.max(Total_Enrollment)])
+    //     .domain( [Math.min(parseInt(`${selectedGroup}`)),Math.max(parseInt(`${selectedGroup}`))])
     //     .range([ height, 0 ]);
     //   svg.append("g")
     //     .call(d3.axisLeft(y));
 
-    //   // // Give these new data to update line
+    //   // Give these new data to update line
 
-    //   // var line = svg
-    //   // .append('g')
-    //   // .append("path")
-    //   //   .datum(filteredData)
-    //   //   .attr("d", d3.line()
-    //   //     .x(2014,2015,2016,2017,2018,2019)
-    //   //     .y(11548401, 11927676, 12220546, 12405352, 12166109, 11919314)
-    //   //   )
-    //   //   .attr("stroke", "black")
-    //   //   .style("stroke-width", 4)
-    //   //   .style("fill", "none");
+    //   var line = svg
+    //   .append('g')
+    //   .append("path")
+    //     .datum(dataFilter)
+    //     .attr("d", d3.line()
+    //       .x(function(d) { return x(+d['Year']) })
+    //       .y(function(d) { return y(+d[`${selectedGroup}`]) })
+    //     )
+    //     .attr("stroke", "black")
+    //     .style("stroke-width", 4)
+    //     .style("fill", "none");
 
 
     //   line
@@ -262,16 +239,24 @@ function updateChart() {
     //       .transition()
     //       .duration(1000)
     //       .attr("d", d3.line()
-    //         .x(function(d) { return x(+d.time) })
-    //         .y(function(d) { return y(+d.value) })
+    //         .x(function(d) { return x(+d['Year']) })
+    //         .y(function(d) { return y(+d[`${selectedGroup}`]) })
     //       );
     //   dot
     //     .data(dataFilter)
     //     .transition()
     //     .duration(1000)
-    //       .attr("cx", function(d) { return x(+d.time) })
-    //       .attr("cy", function(d) { return y(+d.value) });
+    //       .attr("cx", function(d) { return x(+d['Year']) })
+    //       .attr("cy", function(d) { return y(+d[`${selectedGroup}`]) });
+    
     // };
+
+    // d3.select("#selectButton").on("change", function(d) {
+    //   // recover the option that has been chosen
+    //   var selectedOption = d3.select(this).property("value")
+    //       // run the updateChart function with this selected option
+    //   update(selectedOption)
+    // })
 
   });  
 
